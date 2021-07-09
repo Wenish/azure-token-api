@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const port = parseInt(process.env.PORT, 10) || 3000
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Azure Login')
     .setDescription('Use the Azure Client Credential and Password flow with this api')
