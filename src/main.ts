@@ -3,6 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const port = parseInt(process.env.PORT, 10) || 3000
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Azure Login')
@@ -12,6 +13,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(3000);
+  await app.listen(port);
+  console.log(`Listening on Port: ${port}`)
 }
 bootstrap();
